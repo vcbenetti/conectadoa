@@ -1,7 +1,7 @@
 import "./style.css";
 import { verificarSaude } from "./api.js";
 // import { telaDoacoes, telaNovaDoacao } from "./pages/doacoes.js";
-// import { telaDoadores } from "./pages/doadores.js";
+import { telaDoadores } from "./pages/doadores.js";
 const app = document.querySelector("#app");
 // Cada endereço depois do # mostra uma tela
 const rotas = {
