@@ -2,7 +2,7 @@ import { atualizarDoador, criarDoador, excluirDoador, listarDoadores } from "../
 import { el, esconderMensagem, estado, mostrarMensagem } from "../ui.js";
 
 export async function telaDoadores(app) {
-app.innerHTML = `
+  app.innerHTML = `
 <h1>Doadores</h1>
 <div class="layout-doadores">
 <form id="form-doador" class="cartao">
@@ -34,104 +34,104 @@ edição</button>
 </div>
 `;
 
-const form = app.querySelector("#form-doador");
-const titulo = app.querySelector("#titulo-form");
-const botaoSalvar = form.querySelector('button[type="submit"]');
-const botaoCancelar = app.querySelector("#cancelar");
-const msgForm = app.querySelector("#msg-form");
-const msgLista = app.querySelector("#msg-lista");
-const lista = app.querySelector("#lista-doadores");
-let editandoId = null; // null: cadastrando. Um número: editando esse doador.
-async function carregar() {
-lista.replaceChildren(estado("Carregando..."));
-try {
-const doadores = await listarDoadores();
-if (doadores.length === 0) {
-lista.replaceChildren(estado("Nenhum doador cadastrado ainda."));
-return;
-}
-lista.replaceChildren(...doadores.map(cartaoDoador));
-} catch (erro) {
-lista.replaceChildren();
-mostrarMensagem(msgLista, erro.message, "erro");
-}
-}
-function cartaoDoador(doador) {
-return el(
-"li",
-{ class: "cartao" },
-el("strong", {}, doador.nome),
-el("span", { class: "detalhe" }, doador.email ?? "sem e-mail"),
-el("span", { class: "detalhe" }, doador.telefone ?? "sem telefone"),
-el(
-"div",
-{ class: "acoes" },
-el(
-"button",
-{ type: "button", class: "secundario", onclick: () => editar(doador) },
-"Editar",
-),
-el(
-"button",
-{ type: "button", class: "perigo", onclick: () => excluir(doador) },
-"Excluir",
-),
-),
-);
-}
-function editar(doador) {
-editandoId = doador.id_doador;
-form.elements.nome.value = doador.nome;
-form.elements.email.value = doador.email ?? "";
-form.elements.telefone.value = doador.telefone ?? "";
-titulo.textContent = `Editar ${doador.nome}`;
-botaoCancelar.hidden = false;
-esconderMensagem(msgForm);
-form.scrollIntoView({ behavior: "smooth" });
-form.elements.nome.focus();
-}
-function limparFormulario() {
-editandoId = null;
-form.reset();
-titulo.textContent = "Novo doador";
-botaoCancelar.hidden = true;
-}
-async function excluir(doador) {
-if (!confirm(`Excluir ${doador.nome}?`)) return;
-esconderMensagem(msgLista);
-try {
-await excluirDoador(doador.id_doador);
-mostrarMensagem(msgLista, `${doador.nome} foi excluído.`);
-if (editandoId === doador.id_doador) limparFormulario();
-await carregar();
-} catch (erro) {
-mostrarMensagem(msgLista, erro.message, "erro");
-}
-}
-form.addEventListener("submit", async (evento) => {
-evento.preventDefault(); // sem isso, o navegador recarrega a página
-const dados = Object.fromEntries(new FormData(form)); // { nome, email, telefone }
-botaoSalvar.disabled = true; // evita cadastro duplicado por clique duplo
-esconderMensagem(msgForm);
-try {
-if (editandoId) {
-await atualizarDoador(editandoId, dados);
-mostrarMensagem(msgForm, "Doador atualizado.");
-} else {
-const novo = await criarDoador(dados);
-mostrarMensagem(msgForm, `${novo.nome} foi cadastrado.`);
-}
-limparFormulario();
-await carregar();
-} catch (erro) {
-mostrarMensagem(msgForm, erro.message, "erro");
-} finally {
-botaoSalvar.disabled = false;
-}
-});
-botaoCancelar.addEventListener("click", () => {
-limparFormulario();
-esconderMensagem(msgForm);
-});
-await carregar();
+  const form = app.querySelector("#form-doador");
+  const titulo = app.querySelector("#titulo-form");
+  const botaoSalvar = form.querySelector('button[type="submit"]');
+  const botaoCancelar = app.querySelector("#cancelar");
+  const msgForm = app.querySelector("#msg-form");
+  const msgLista = app.querySelector("#msg-lista");
+  const lista = app.querySelector("#lista-doadores");
+  let editandoId = null; // null: cadastrando. Um número: editando esse doador.
+  async function carregar() {
+    lista.replaceChildren(estado("Carregando..."));
+    try {
+      const doadores = await listarDoadores();
+      if (doadores.length === 0) {
+        lista.replaceChildren(estado("Nenhum doador cadastrado ainda."));
+        return;
+      }
+      lista.replaceChildren(...doadores.map(cartaoDoador));
+    } catch (erro) {
+      lista.replaceChildren();
+      mostrarMensagem(msgLista, erro.message, "erro");
+    }
+  }
+  function cartaoDoador(doador) {
+    return el(
+      "li",
+      { class: "cartao" },
+      el("strong", {}, doador.nome),
+      el("span", { class: "detalhe" }, doador.email ?? "sem e-mail"),
+      el("span", { class: "detalhe" }, doador.telefone ?? "sem telefone"),
+      el(
+        "div",
+        { class: "acoes" },
+        el(
+          "button",
+          { type: "button", class: "secundario", onclick: () => editar(doador) },
+          "Editar",
+        ),
+        el(
+          "button",
+          { type: "button", class: "perigo", onclick: () => excluir(doador) },
+          "Excluir",
+        ),
+      ),
+    );
+  }
+  function editar(doador) {
+    editandoId = doador.id_doador;
+    form.elements.nome.value = doador.nome;
+    form.elements.email.value = doador.email ?? "";
+    form.elements.telefone.value = doador.telefone ?? "";
+    titulo.textContent = `Editar ${doador.nome}`;
+    botaoCancelar.hidden = false;
+    esconderMensagem(msgForm);
+    form.scrollIntoView({ behavior: "smooth" });
+    form.elements.nome.focus();
+  }
+  function limparFormulario() {
+    editandoId = null;
+    form.reset();
+    titulo.textContent = "Novo doador";
+    botaoCancelar.hidden = true;
+  }
+  async function excluir(doador) {
+    if (!confirm(`Excluir ${doador.nome}?`)) return;
+    esconderMensagem(msgLista);
+    try {
+      await excluirDoador(doador.id_doador);
+      mostrarMensagem(msgLista, `${doador.nome} foi excluído.`);
+      if (editandoId === doador.id_doador) limparFormulario();
+      await carregar();
+    } catch (erro) {
+      mostrarMensagem(msgLista, erro.message, "erro");
+    }
+  }
+  form.addEventListener("submit", async (evento) => {
+    evento.preventDefault(); // sem isso, o navegador recarrega a página
+    const dados = Object.fromEntries(new FormData(form)); // { nome, email, telefone }
+    botaoSalvar.disabled = true; // evita cadastro duplicado por clique duplo
+    esconderMensagem(msgForm);
+    try {
+      if (editandoId) {
+        await atualizarDoador(editandoId, dados);
+        mostrarMensagem(msgForm, "Doador atualizado.");
+      } else {
+        const novo = await criarDoador(dados);
+        mostrarMensagem(msgForm, `${novo.nome} foi cadastrado.`);
+      }
+      limparFormulario();
+      await carregar();
+    } catch (erro) {
+      mostrarMensagem(msgForm, erro.message, "erro");
+    } finally {
+      botaoSalvar.disabled = false;
+    }
+  });
+  botaoCancelar.addEventListener("click", () => {
+    limparFormulario();
+    esconderMensagem(msgForm);
+  });
+  await carregar();
 }

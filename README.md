@@ -20,6 +20,7 @@ Siga os passos abaixo para clonar o repositório, instalar as dependências e ex
 ### 1. Pré-requisitos
 
 Certifique-se de ter instalado em sua máquina:
+
 - [Node.js](https://nodejs.org/) (versão LTS recomendada)
 - [pnpm](https://pnpm.io/)
 
@@ -59,19 +60,23 @@ PORT=3000
 Para rodar a aplicação completa, você precisará de **dois terminais** abertos na raiz do projeto:
 
 ### Terminal 1 -> Servidor API (Backend)
+
 Inicie a API em modo de desenvolvimento com hot-reload (`node --watch`):
 
 ```bash
 vp run api
 ```
+
 > A API estará disponível em: `http://localhost:3000`
 
 ### Terminal 2 -> Servidor Frontend
+
 Inicie o servidor de desenvolvimento do Vite+:
 
 ```bash
 vp dev
 ```
+
 > O frontend estará rodando no endereço indicado pelo terminal (geralmente `http://localhost:5173`). As requisições para `/api` serão automaticamente redirecionadas pelo proxy do `vite.config.ts` para a porta 3000.
 
 ---

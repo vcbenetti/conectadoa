@@ -2,302 +2,302 @@
 Mobile-first: as regras sem @media valem para o celular.
 Os @media (min-width) acrescentam o layout para telas maiores. */
 :root {
---cor-primaria: #162c54;
---cor-destaque: #2563af;
---cor-texto: #1f2933;
---cor-suave: #5f6b7a;
---cor-borda: #d5dbe3;
---cor-fundo: #f5f7fa;
---cor-cartao: #ffffff;
---cor-sucesso: #1d6b3a;
---cor-sucesso-fundo: #e6f4ea;
---cor-erro: #a32020;
---cor-erro-fundo: #fdecec;
---raio: 8px;
---espaco: 16px;
-font-family: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
-color: var(--cor-texto);
-background: var(--cor-fundo);
+  --cor-primaria: #162c54;
+  --cor-destaque: #2563af;
+  --cor-texto: #1f2933;
+  --cor-suave: #5f6b7a;
+  --cor-borda: #d5dbe3;
+  --cor-fundo: #f5f7fa;
+  --cor-cartao: #ffffff;
+  --cor-sucesso: #1d6b3a;
+  --cor-sucesso-fundo: #e6f4ea;
+  --cor-erro: #a32020;
+  --cor-erro-fundo: #fdecec;
+  --raio: 8px;
+  --espaco: 16px;
+  font-family: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
 }
 * {
-box-sizing: border-box;
+  box-sizing: border-box;
 }
 /* Garante que o atributo hidden esconda mesmo os elementos com display definido no CSS */
 [hidden] {
-display: none !important;
+  display: none !important;
 }
 body {
-margin: 0;
-line-height: 1.5;
+  margin: 0;
+  line-height: 1.5;
 }
 h1 {
-font-size: 1.5rem;
-margin: 0 0 var(--espaco);
+  font-size: 1.5rem;
+  margin: 0 0 var(--espaco);
 }
 h2 {
-font-size: 1.125rem;
-margin: 0 0 12px;
+  font-size: 1.125rem;
+  margin: 0 0 12px;
 }
 /* Topo e navegação */
 .topo {
-background: var(--cor-primaria);
-padding: 12px var(--espaco);
+  background: var(--cor-primaria);
+  padding: 12px var(--espaco);
 }
 .marca {
-color: #fff;
-font-weight: 700;
-font-size: 1.125rem;
-text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-decoration: none;
 }
 nav {
-display: flex;
-flex-wrap: wrap;
-gap: 4px 16px;
-margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 8px;
 }
 nav a {
-color: #cfdaea;
-text-decoration: none;
-padding: 6px 0;
+  color: #cfdaea;
+  text-decoration: none;
+  padding: 6px 0;
 }
 nav a[aria-current="page"] {
-color: #fff;
-border-bottom: 2px solid #fff;
+  color: #fff;
+  border-bottom: 2px solid #fff;
 }
 main {
-padding: var(--espaco);
-max-width: 1100px;
-margin: 0 auto;
+  padding: var(--espaco);
+  max-width: 1100px;
+  margin: 0 auto;
 }
 .rodape {
-color: var(--cor-suave);
-font-size: 0.875rem;
-text-align: center;
-padding: var(--espaco);
+  color: var(--cor-suave);
+  font-size: 0.875rem;
+  text-align: center;
+  padding: var(--espaco);
 }
 /* Cartões e listas */
 .cartao {
-background: var(--cor-cartao);
-border: 1px solid var(--cor-borda);
-border-radius: var(--raio);
-padding: var(--espaco);
+  background: var(--cor-cartao);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: var(--espaco);
 }
 .lista {
-list-style: none;
-padding: 0;
-margin: 0;
-display: grid;
-gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
 }
 .lista .cartao {
-display: grid;
-gap: 4px;
-align-content: start; /* conteúdo no topo, mesmo quando o cartão é mais alto */
+  display: grid;
+  gap: 4px;
+  align-content: start; /* conteúdo no topo, mesmo quando o cartão é mais alto */
 }
 .detalhe,
 .opcional,
 .resumo {
-color: var(--cor-suave);
+  color: var(--cor-suave);
 }
 .opcional {
-font-size: 0.875rem;
+  font-size: 0.875rem;
 }
 .estado {
-color: var(--cor-suave);
-padding: var(--espaco);
-text-align: center;
-border: 1px dashed var(--cor-borda);
-border-radius: var(--raio);
+  color: var(--cor-suave);
+  padding: var(--espaco);
+  text-align: center;
+  border: 1px dashed var(--cor-borda);
+  border-radius: var(--raio);
 }
 /* Formulários: cada label envolve o seu campo, um embaixo do outro */
 form label {
-display: block;
-margin-bottom: 12px;
-font-weight: 600;
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
 }
 input,
 select,
 textarea {
-font: inherit;
-font-weight: 400;
-display: block;
-width: 100%;
-margin-top: 4px;
-padding: 10px;
-border: 1px solid var(--cor-borda);
-border-radius: 6px;
-background: #fff;
+  font: inherit;
+  font-weight: 400;
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 10px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  background: #fff;
 }
 /* Borda vermelha só depois que o usuário mexeu no campo ou tentou enviar */
 input:user-invalid,
 select:user-invalid {
-border-color: var(--cor-erro);
+  border-color: var(--cor-erro);
 }
 a {
-color: var(--cor-destaque);
+  color: var(--cor-destaque);
 }
 fieldset {
-border: 1px solid var(--cor-borda);
-border-radius: var(--raio);
-padding: 12px;
-margin: 0 0 12px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 12px;
+  margin: 0 0 12px;
 }
 legend {
-font-weight: 600;
-padding: 0 4px;
+  font-weight: 600;
+  padding: 0 4px;
 }
 /* Botões */
 button,
 .botao {
-font: inherit;
-font-weight: 600;
-min-height: 44px; /* área de toque confortável no celular */
-padding: 8px 16px;
-border-radius: 6px;
-border: 1px solid var(--cor-primaria);
-background: var(--cor-primaria);
-color: #fff;
-cursor: pointer;
-text-decoration: none;
-display: inline-flex;
-align-items: center;
-justify-content: center;
+  font: inherit;
+  font-weight: 600;
+  min-height: 44px; /* área de toque confortável no celular */
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--cor-primaria);
+  background: var(--cor-primaria);
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 button.secundario {
-background: #fff;
-color: var(--cor-primaria);
+  background: #fff;
+  color: var(--cor-primaria);
 }
 button.perigo {
-background: #fff;
-color: var(--cor-erro);
-border-color: var(--cor-erro);
+  background: #fff;
+  color: var(--cor-erro);
+  border-color: var(--cor-erro);
 }
 button:disabled {
-opacity: 0.6;
-cursor: wait;
+  opacity: 0.6;
+  cursor: wait;
 }
 :focus-visible {
-outline: 3px solid var(--cor-destaque);
-outline-offset: 2px;
+  outline: 3px solid var(--cor-destaque);
+  outline-offset: 2px;
 }
 .acoes {
-display: flex;
-flex-wrap: wrap;
-align-items: center;
-gap: 8px;
-margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
 }
 /* Mensagens de sucesso e de erro */
 .mensagem {
-border-radius: 6px;
-padding: 10px 12px;
-margin: 12px 0;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 12px 0;
 }
 .mensagem.sucesso {
-color: var(--cor-sucesso);
-background: var(--cor-sucesso-fundo);
+  color: var(--cor-sucesso);
+  background: var(--cor-sucesso-fundo);
 }
 .mensagem.erro {
-color: var(--cor-erro);
-background: var(--cor-erro-fundo);
+  color: var(--cor-erro);
+  background: var(--cor-erro-fundo);
 }
 /* Itens da doação: no celular, item em cima e quantidade e botão embaixo */
 .linha-item {
-display: grid;
-grid-template-columns: 1fr auto;
-gap: 0 8px;
-align-items: end;
-padding-bottom: 12px;
-margin-bottom: 12px;
-border-bottom: 1px solid var(--cor-borda);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0 8px;
+  align-items: end;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--cor-borda);
 }
 .linha-item label:first-child {
-grid-column: 1 / -1;
+  grid-column: 1 / -1;
 }
 .linha-item button {
-margin-bottom: 12px;
+  margin-bottom: 12px;
 }
 /* Listagem de doações */
 .titulo-tela {
-display: flex;
-flex-wrap: wrap;
-align-items: center;
-justify-content: space-between;
-gap: 8px;
-margin-bottom: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 .titulo-tela h1 {
-margin: 0;
+  margin: 0;
 }
 .doacao-topo {
-display: flex;
-justify-content: space-between;
-gap: 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
 }
 .doacao-topo time {
-color: var(--cor-suave);
-white-space: nowrap;
+  color: var(--cor-suave);
+  white-space: nowrap;
 }
 .itens {
-list-style: none;
-padding: 0;
-margin: 8px 0 0;
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
 }
 .itens li {
-display: grid;
-grid-template-columns: 3ch 1fr auto;
-gap: 8px;
-padding: 6px 0;
-border-top: 1px solid var(--cor-borda);
+  display: grid;
+  grid-template-columns: 3ch 1fr auto;
+  gap: 8px;
+  padding: 6px 0;
+  border-top: 1px solid var(--cor-borda);
 }
 .qtd {
-font-weight: 700;
-text-align: right;
+  font-weight: 700;
+  text-align: right;
 }
 .unidade {
-color: var(--cor-suave);
-font-size: 0.875rem;
+  color: var(--cor-suave);
+  font-size: 0.875rem;
 }
 .observacao {
-color: var(--cor-suave);
-font-style: italic;
-margin: 8px 0 0;
+  color: var(--cor-suave);
+  font-style: italic;
+  margin: 8px 0 0;
 }
 /* A partir de 720px: duas colunas nas listas e itens da doação em uma linha só */
 @media (min-width: 720px) {
-.topo {
-display: flex;
-align-items: center;
-justify-content: space-between;
-}
-nav {
-margin-top: 0;
-}
-.lista {
-grid-template-columns: repeat(2, 1fr);
-}
-.linha-item {
-grid-template-columns: 1fr 140px auto;
-}
-.linha-item label:first-child {
-grid-column: auto;
-}
-.formulario-doacao {
-max-width: 720px;
-}
+  .topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav {
+    margin-top: 0;
+  }
+  .lista {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .linha-item {
+    grid-template-columns: 1fr 140px auto;
+  }
+  .linha-item label:first-child {
+    grid-column: auto;
+  }
+  .formulario-doacao {
+    max-width: 720px;
+  }
 }
 /* A partir de 960px: formulário ao lado da lista de doadores */
 @media (min-width: 960px) {
-.layout-doadores {
-display: grid;
-grid-template-columns: 340px 1fr;
-gap: 24px;
-align-items: start;
-}
-.layout-doadores .lista {
-grid-template-columns: 1fr;
-}
-.lista {
-grid-template-columns: repeat(3, 1fr);
-}
+  .layout-doadores {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .layout-doadores .lista {
+    grid-template-columns: 1fr;
+  }
+  .lista {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
