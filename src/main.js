@@ -1,20 +1,26 @@
 import "./style.css";
-
+import { verificarSaude } from "./api.js";
+// import { telaDoacoes, telaNovaDoacao } from "./pages/doacoes.js";
+// import { telaDoadores } from "./pages/doadores.js";
 const app = document.querySelector("#app");
-app.innerHTML = `
-  <h1>ConectaDoa</h1>
-  <p>Status da API: <strong id="status">verificando...</strong></p>
-`;
-
-async function verificarApi() {
-  const status = document.querySelector("#status");
-  try {
-    const resposta = await fetch("/api/health");
-    const dados = await resposta.json();
-    status.textContent = `${dados.status} (${dados.hora})`;
-  } catch {
-    status.textContent = "API fora do ar";
-  }
+// Cada endereço depois do # mostra uma tela
+const rotas = {
+"#/doadores": telaDoadores,
+"#/doacoes/nova": telaNovaDoacao,
+"#/doacoes": telaDoacoes,
+};
+function navegar() {
+const rota = rotas[location.hash] ? location.hash : "#/doadores";
+for (const link of document.querySelectorAll("nav a")) {
+if (link.getAttribute("href") === rota) link.setAttribute("aria-current", "page");
+else link.removeAttribute("aria-current");
 }
-
-verificarApi();
+rotas[rota](app);
+}
+window.addEventListener("hashchange", navegar);
+navegar();
+// Indicador no rodapé, herdado da Aula 1
+const statusApi = document.querySelector("#status-api");
+verificarSaude()
+.then((saude) => (statusApi.textContent = `${saude.status}, banco: ${saude.banco}`))
+.catch(() => (statusApi.textContent = "fora do ar"));
