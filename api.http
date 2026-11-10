@@ -1,0 +1,82 @@
+### ConectaDoa · testes manuais da API
+### Com a API rodando (vp run api), clique em "Send Request" acima de cada bloco.
+
+@api = http://localhost:3000/api
+
+### Saúde da API e do banco
+GET {{api}}/health
+
+### Listar doadores
+GET {{api}}/doadores
+
+### Buscar um doador
+GET {{api}}/doadores/1
+
+### Doador que não existe (espera 404)
+GET {{api}}/doadores/999
+
+### Cadastrar doador (espera 201)
+POST {{api}}/doadores
+Content-Type: application/json
+
+{
+  "nome": "Beatriz Ramos",
+  "email": "beatriz@exemplo.com",
+  "telefone": "(11) 96666-1003"
+}
+
+### Cadastrar sem nome (espera 400)
+POST {{api}}/doadores
+Content-Type: application/json
+
+{ "email": "sem.nome@exemplo.com" }
+
+### E-mail repetido (espera 409)
+POST {{api}}/doadores
+Content-Type: application/json
+
+{ "nome": "Outra Ana", "email": "ana.souza@exemplo.com" }
+
+### Editar doador (espera 200)
+PUT {{api}}/doadores/3
+Content-Type: application/json
+
+{ "nome": "Carlos Lima", "email": "carlos.lima@exemplo.com", "telefone": "(11) 97777-1002" }
+
+### Excluir doador que tem doações (espera 409)
+DELETE {{api}}/doadores/1
+
+### Excluir doador sem doações (espera 204)
+DELETE {{api}}/doadores/3
+
+### Listar o catálogo de itens
+GET {{api}}/itens
+
+### Listar doações com doador e itens
+GET {{api}}/doacoes
+
+### Registrar doação com dois itens (espera 201)
+POST {{api}}/doacoes
+Content-Type: application/json
+
+{
+  "id_doador": 2,
+  "data_doacao": "2026-10-22",
+  "observacao": "Arrecadação da escola",
+  "itens": [
+    { "id_item": 1, "quantidade": 4 },
+    { "id_item": 4, "quantidade": 6 }
+  ]
+}
+
+### Doação sem itens (espera 400)
+POST {{api}}/doacoes
+Content-Type: application/json
+
+{ "id_doador": 2, "data_doacao": "2026-10-22", "itens": [] }
+
+### Doação para doador inexistente (espera 400)
+POST {{api}}/doacoes
+Content-Type: application/json
+
+{ "id_doador": 999, "data_doacao": "2026-10-22", "itens": [{ "id_item": 1, "quantidade": 1 }] }
